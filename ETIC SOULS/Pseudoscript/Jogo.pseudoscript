@@ -1,0 +1,305 @@
+
+/* IMPORTAÇÕES*/
+
+importar InGameVisuals.pseudoscript
+
+importar UserImputs&OpcoesDeJogo.pseudoscript
+
+/* Dilema 1*/
+
+funcao Dilema1()
+    imprime("                                                                                                          ")
+    imprime("                                          -~- ESCOLHA -~-                                                 ")
+    imprime("                                                                                                          ")
+    imprime("                          - [A] GRITAR POR AJUDA -      - [B] NÃO FAZER NADA -                        [X] ")
+    imprime("                                                                                                          ")
+    entrada("A sua escolha: ", opcao)
+        se opcao != A && != B &&!= X:
+            imprime("ERRO: Escolha uma opcao válida.")
+        senao:
+            se opcao == A:
+                imprime("                                                                                                          ")
+                imprime(" Gritas por ajuda:")
+                imprime((PlayerCharacter).nome + "‣" + "HEEEEEEEY!    AJUDAAAAA!" )
+                next()
+                imprime("A silhueta pára para te ouvir.")
+                next()
+                imprime((PlayerCharacter).nome + "‣" + "HEY, ONDE ESTAMOS!?    O QUE SE PASSA?!" )
+                next()
+                imprime("Desconhecido ‣ Hi hihi hi hi hi hi hi hi hi hiiiiii...")
+                next()
+                imprime("A silhueta desaparece nos meandros da masmorra deixando ecos do seu riso ressoar pelos corredores.")
+                imprime("Ele deixa-te na tua miséria apesar de lhe teres pedido ajuda.")
+                next()
+                imprime((PlayerCharacter).nome + "‣" + "HEEEY!    ONDE É QUE PENSAS QUE VAIS?! SEU.." )
+                next()
+                imprime("??? ‣ ggGRRRHNAAAAAAAAAaarRRRRHhhhh!! (Grito desumano)")
+                next()
+                imprime("??? ‣ gRRRHNAAAARrrg...  AAAgRRRHNAAAAaarRH!!! (Mais gritos)")
+                next()
+                imprime(" *DOUF. DOUF. DOUF. (Barulhos de Patas)")
+                imprime("Passos pesados ecoam pelos corredores na tua direção.")
+            se opcao == B:
+                imprime("                                                                                                          ")
+                imprime(" Não fazes nada:")
+                next()
+                imprime("A silhueta desaparece furtivamente. Já nºao há um único sinal de vida ao teu redor.")
+                next()
+                imprime("??? ‣ ggGRRRHNAAAAAAAAAaarRRRRHhhhh!! (Grito desumano)")
+                next()
+                imprime("Ouves um gritar desumano no corredor não longe de ti. Assustado, levantas-te precipitadamente.")
+                next()
+                se (PlayerCharacter).Barulhento = verdadeiro
+                    imprime("Ao levantar-te, o teu equipamento produz ruídos que alertam o que quer que seja a fonte daquele gritar.")
+                    Dilema1_A()
+                se (PlayerCharacter).Barulhento = falso
+                    Dilema1_B()
+ 
+/* Caso tenhas sido barulhento */
+
+
+
+funcao Dilema1_A()
+    imprime("??? ‣ gRRRHNAAAARrrg...  AAAgRRRHNAAAAaarRH!!! (Mais gritos)")
+    next()
+    imprime(" *DOUF. DOUF. DOUF. (Barulhos de Patas)")
+    imprime("Passos pesados ecoam pelos corredores na tua direção.")
+        next()
+        imprime("??? ‣ ggGRRRHNAAAAAAAAAaarRH!!")
+        next()
+        imprime("Tens pouco tempo até a criatura chegar a ti. Observa rapidamente os teus arredores e toma uma decisão.")
+        next()
+        ObservarArredores()
+            ASCII_OLHO()
+                imprime(" -~- OBSERVAÇÕES -~-                                                                                       ")
+                imprime("                                                                                                           ")
+                imprime("• Estás numa cela cheia de restos humanos em putrefação.")
+                imprime("• Não era uma poça de água, era uma poça de sangue na qual estavas deitado. As gotas a cair do teto, eram os restos pingantes de um soldado esventrado.")
+                imprime("Sem dúvida a mais recente refeição da criatura que está neste momento a aproximar-se")")
+                imprime("• Conclusão: Estás na tigela de comida de uma criatura sanguinária, e a sua próxima refeição és tu.")
+                next()
+                imprime("A criatura está quase a chegar à tua cela. Toma uma decisão!")
+                Dilema1_A1()
+
+/* Foste barulhento e criatura está a ir ter contigo*/
+
+funcao Dilema1_A1()
+enquanto verdadeiro:
+    imprime("                                                                                                          ")
+    imprime("                                          -~- ESCOLHA -~-                                                 ")
+    imprime("                                                                                                          ")
+    imprime("[A] DISTRAIR A CRIATURA")
+    imprime("[B] FICAR NA CELA E NÃO FAZER NADA")
+    imprime("[C] TENTAR UM TUDO POR TUDO, CORRER!")
+    imprime("[D] OBSERVAR")
+    imprime("                                                                                                          ")
+    imprime("[X] SAIR DO JOGO")
+    imprime("                                                                                                          ")
+    entrada("A sua escolha: ", escolha)
+    se escolha != A && != B &&!= C &&!= D && != X:
+        imprime("ERRO: Escolha uma opcao válida.")
+    senao:
+        se escolha == X:
+           /* sais do jogo*/
+        se escolha == A
+            imprime("Pegas num braço meio podre que estava no chão e atiras para o corredor.")
+            next()
+            imprime("A criatura reage como esperavas. O braço atrai a criatura, ela começa a come-lo raivozamente.")
+            next()
+            imprime("Ganhaste algum tempo com este pequeno truque. Aproveita o momento de distração da criatura.")
+            imprime("                                                                                                          ")
+            imprime("                                          -~- ESCOLHA -~-                                                 ")
+            imprime("                                                                                                          ")
+            imprime("[A] SAIR DA CELA FURTIVAMENTE")
+            imprime("[B] SAIR DA CELA A CORRER")
+            imprime("[C] ESCONDER-TE NO ARMÁRIO")
+            imprime("                                                                                                          ")
+            imprime("[X] SAIR DO JOGO")
+            imprime("                                                                                                          ")
+            entrada("A sua escolha: ", escolha)
+            se escolha != A && != B &&!= C && != X:
+                imprime("ERRO: Escolha uma opcao válida.")
+            senao:
+                se opcao == A:
+                    imprime("Tentas sair furtivamente da cela, pela porta que está danificada.")
+                    next()
+                    imprime("Consegues sair em silêncio. Estàs mesmo atento à criatura, e constatas que ela não te viu.")
+                    next()
+                    imprime("*CRACK")
+                    imprime("Esqueceste de olhar onde metias os pés... pizàste um osso e partiste-o ao meio, alertando a criatura.")
+                    next()
+                    imprime("A criatura salta-te para cima e oblitera o teu pequeno corpo humano insignificante em alguns segundos.")
+                    next()
+                    YouDied()
+                se opcao == B:
+                    imprime("Sais da cela a correr o mais rápido possivel.")
+                    next()
+                    imprime("A criatura vê-te e larga imediatamente o braço que tinha na boca e salta-te para cima...")
+                    next()
+                    imprime("O impacto é tão violento que desmaias e ficas inconsciente. És brutalmente devorado. Pelo menos não tiveste de vivenciar a tua própria morte.")
+                    next("")
+                    YouDied()
+                se opcao == C:
+                    imprime("Aproveitas a disctração da criatura para te esconder no armário da tua cela.")
+                    next()
+                    imprime("Ao abrir a porta direita do armário, a porta direita cai de podre e provoca um estrondão de barulhos de madeira.")
+                    next()
+                    imprime("A criatura ouve isto e larga o petisco imediatamente. Furiosa ela acelera em direção à tua cela.")
+                    next()
+                    imprime("Numa mistura de desespero e instinto, a tua adrenalina faz-te saltar para dentro do armário.")
+                    next()
+                    imprime("Percutas o fundo de mandeira do armário, partindo-o e revelando uma passagem secreta.")
+                    next()
+                    imprime("A criatura está prestes a entrar na tua cela a alta velocidade.")
+                    next()
+                    imprime("Dominado por instinctos e uma força primordial de sobrevivencia, consegues rapidamente levantar-te e deparas-te com a passagem secreta.")
+                    imprime("Um longo corredor adaptado ao tamanho de um humano se estende sobre o que parece ser kilometros.")
+                    next()
+                    imprime("A criatura entra violentemente na tua cela, partindo a porta que voa em pedaços. Ela joga-se contra o armário e tenta apanhar-te")
+                    next()
+                    imprime("Ela quase te apanha esticando o seu braço mutante , mas estás salvo. Ela é demasiado grande para caber neste túnel constrangido.")
+                    next()
+                    imprime("Criatura ‣ AAAAAGHHHAAAGRRRHNAAAAAAAAAaarRH!!")
+                    next()
+                    imprime("A criatura está mais que raivoza. Ela retira o braço do túnel e descarga o seu ódio e frustração destruido a mistura de restos humanos e objetos partidos da tua cela ")
+                    next()
+                    imprime("Avanças pelo corredor afora durante o que te parece horas. Eventualmente, vês a luz do dia.")
+        se escolha == B:
+            imprime("Decides ficar na cela e não fazer nada.")
+            next()
+            imprime("Um rato esfomeado surge da penumbra e morde-te profundamente no torneselo. Gritas de dor, alertando ainda mais a criatura.")
+            next()
+            imprime("A criatura revela-se a ti destruindo brutalmente a porta da tua cela.")
+            next()
+            imprime("A porta voa-te na cara e projeta-te contra a parede. Com o choque do impacto não consegues mais mecher.")
+            next()
+            imprime("A criatura coloca um pé  sobre ti e esmaga o teu peito lentamente, e de uma unica dentada devora a tua cabeça...")
+            next()
+            YouDied()
+        se escolha == C:
+            imprime("Consegues escapar-te da cela passando pelo defeito na porta e comessas a correr!")
+            Next()
+            imprime("Criatura ‣ AAAAAGHHHAAAGRRRHNAAAAAAAAAaarRH!!")
+            next()
+            imprime("A criatura viu-te a sair e está a correr a trás de ti")
+            next()
+            imprime("Corres de todas as tuas forças mas a criatura é de outro mundo. Ela é muito bem superior a humanos, e é bem mais rápida do que tu.")
+            next()
+            imprime("Durante a corrida a criatura salta-te para cima e oblitera o teu pequeno e fragil corpo humano em alguns segundos.")
+            next()
+            YouDied()
+        se escolha == D:
+            ObservarArredores()
+                ASCII_OLHO()
+            imprime(" -~- OBSERVAÇÕES -~-                                                                                       ")
+            imprime("                                                                                                           ")
+            imprime("• Num lampejo de lucidês, a adrenalina revela-te um armário velho no fundo da tua cela.")
+            imprime("• O armário tem o aspeto de um roupeiro com duas portas ligeiramente entreabertas.")
+            next()
+            imprime("                                                                                                          ")
+            imprime("                                          -~- ESCOLHA -~-                                                 ")
+            imprime("                                                                                                          ")
+            imprime("[A] FUGIR PARA DENTRO DO ARMÁRIO")
+            imprime("[B] FICAR NA CELA E NÃO FAZER NADA")
+            imprime("[C] TENTAR UM TUDO POR TUDO, CORRER!")
+            imprime("[D] DISTRAIR A CRIATURA")
+            imprime("                                                                                                          ")
+            imprime("[X] SAIR DO JOGO")
+            imprime("                                                                                                          ")
+            entrada("A sua escolha: ", escolha)
+            se escolha != A && != B &&!= C &&!= D && != X:
+                imprime("ERRO: Escolha uma opcao válida.")
+                
+
+
+
+
+
+
+
+
+
+/* Caso tenhas sido silencioso*/
+                    
+funcao Dilema1_B()
+    imprime("Levantas-te furtivamente. Isolado no silencio e na escuridão da tua cela, tentas perceber qual é a fonte do grito.")
+        next()
+        ObservarArredores()
+            ASCII_OLHO()
+        imprime(" -~- OBSERVAÇÕES -~-                                                                                       ")
+        imprime("                                                                                                           ")
+        imprime("• Ao sair lentamente da tua cela, olhas para o corredor à tua esquerda. Percebes qual é a fonte do grito.  ")
+        imprime("• Uma criatura mutante vagueia pelos corredores. Esfolada e coberta de sangue, é uma amalgama grotesta entre humano, crocodilo e dinossauro.")
+        imprime("• Tem o triplo do teu tamanho.")
+        next()
+        imprime("Criatura ‣ gRRRHNAAAARrrg...  AAAgRRRHNAAAAaarRH!!! (Mais gritos)")
+        next()
+        imprime("A criatura não te ouviu e parece estar a afastar-se")
+        
+        /* fritei aqui, era para continuar a arvore de opcoes mas hoje já não dá :d  */
+
+
+
+
+/* O DESENROLAR PRINCIPAL DO JOGO*/
+
+funcao Jogo()
+    imprime("┓┏┳┓┳┏┓ ┓  ┏┓┏┓┳┳┓ ┏┓┓┏┳┓┳┏┓  ┏┓┏┓┳┳┓ ┏┓┓┏┳┓┳┏┓  ┏┓┏┓┳┳┓ ┏┓┓┏┳┓┳┏┓  ┏┓┏┓┳┳┓ ┏┓┓┏┳┓┳┏┓  ┏┓┏┓┳┳┓ ┏┓┓┏┳┓┳┏┓ ┓")
+    imprime("⣿⣿⣿⣿⣿⢌⠳⣜⠻⣼⣿⣿⣿⣿⢌⠳⣿⣿⣿⣿⣿⣿⣿⡿⢌⠟⠋⠀⢌⠳⠈⠀⠣⢌⠳⣜⠻⣼⢯⣿⣿⠋⢌⣿⣿⣿⣿⣿⣿⡿⢌⠳⠋⠀⢌⠀⢌⠀⠀⠣⢌⠳⣜⠻⣼⢯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠳⠳")
+    imprime("⣿⣿⣿⢌⠳⣜⠻⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⢌⠳⠟⠋⢌⠀⠈                     ⠻⣼⢌⠳⠟⠋⢌⠀⠈                    ⠳ ⣼⢌⠳⢌⣼⢌⠳⠟⠋⢌    ")
+    imprime(" ⠈⠀⠣⢌⠳⢌⠳⣜⠻⣼⢯⣿⢌⠳⠟⠋                                   ⠋                                               ")
+    imprime("                                      ┏┓┏┳┓┳┏┓  ┏┓┏┓┳┳┓ ┏┓                                                ")
+    imprime("                                  -~- ┣  ┃ ┃┃   ┗┓┃┃┃┃┃ ┗┓ -~-                                            ")
+    imprime("                                      ┗┛ ┻ ┻┗┛  ┗┛┗┛┗┛┗┛┗┛                                                ")
+    imprime("                                                                                                          ")
+    imprime("                                                                                                          ")
+    imprime("                                                                                                          ")
+    imprime("  NÍVEL I                                                                                                 ")
+    imprime("                                                                                                          ")
+    next()
+    imprime(" *Barulho de corpo a ser jogado para o chão")
+    next()
+    imprime(" *Uma voz sádica ri e desaparece nos ruidos ambientes")
+    next()
+    imprime("Acordas deitado no chão... Estás só.")
+    next()
+    imprime("*Ruidos de gotas a cair do teto e a salpicar no chão.")
+    next()
+    imprime("Não tens qualquer lembrança. Não sabes quem és, como te chamas nem onde estás...")
+    next()
+    imprime("Ao retomar consciencia, tentas perceber o que se passa. Olhas ao teu redor. ")    
+    next()
+    ObservarArredores()
+        ASCII_OLHO()
+    imprime(" -~- OBSERVAÇÕES -~-                                                                                      ")
+    imprime("                                                                                                          ")
+    imprime(" • Estás numa pequena sala cúbica, com paredes de pedra. Não há sinal da luz do sol, estás provavelmente  ")
+    imprime(" debaixo de terra...                                                                                      ")
+    next()
+    imprime(" Esta sala é humida e fria, suja, e quase às escuras. Este sítio não te é familiar...")
+    next()
+    ObservarArredores()
+    imprime(" -~- OBSERVAÇÕES -~-                                                                                      ")
+    imprime("                                                                                                          ")
+    imprime(" • Estás deitado numa poça insalubre. Estás encharcado e cheiras a morte...")
+    imprime(" • O teu próprio cheiro quase te faz vomitar.")
+    next()
+    ObservarArredores()
+    imprime(" -~- OBSERVAÇÕES -~-                                                                                      ")
+    imprime("                                                                                                          ")
+    imprime("• Este sítio parece ser numa cela de prisão, num genero de masmorra desmoronada. ")
+    imprime("• Pelos vistos não estás ferido e tens todo o teu equipamento contigo.")
+    next()
+    ObservarArredores()
+    imprime(" -~- OBSERVAÇÕES -~-                                                                                      ")
+    imprime("                                                                                                          ")
+    imprime(" • Uma pequena luz ao fundo do corredor revela uma silhueta humanoide a passar pelos corredores com pés   ")
+    imprime("de veludo.")
+    next ()
+    dilema1()   
+    imprime(" • A porta de ferro da tua jaula está visivelmente partida. Deves poder escapar por ali.                  ")
+    imprime("Deverias conseguir escapar-te por ali e pedir ajuda à pessoa no corredor.")
+
+
+
+

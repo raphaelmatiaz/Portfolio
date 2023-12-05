@@ -1,0 +1,265 @@
+/* =======================================================================================================================================*/
+
+/*Imports*/
+
+importar Classes.pseudoscript 
+
+/* MENU PRINCIPAL DO JOGO + MENU DE CRIAÇÃO DE PERSONAGEM + INICIAR O JOGO*/
+
+
+/* Launcher do Jogo*/
+
+funcao LaunchGame()
+    MainMenu()
+
+
+/* Menu Principal do Jogo */
+
+funcao MainMenu()
+    imprime("                                                                                                          ")
+    imprime("                                                                                                          ")
+    imprime("                                                                                                          ")
+    imprime("    ▄████████     ███      ▄█   ▄████████         ▄████████  ▄██████▄  ███    █▄   ▄█          ▄████████  ")
+    imprime("   ███    ███ ▀█████████▄ ███  ███    ███        ███    ███ ███    ███ ███    ███ ███         ███    ███  ")
+    imprime("   ███    █▀     ▀███▀▀██ ███▌ ███    █▀         ███    █▀  ███    ███ ███    ███ ███         ███    █▀   ")
+    imprime("  ▄███▄▄▄         ███   ▀ ███▌ ███               ███        ███    ███ ███    ███ ███         ███         ")
+    imprime(" ▀▀███▀▀▀         ███     ███▌ ███             ▀███████████ ███    ███ ███    ███ ███       ▀███████████  ")
+    imprime("   ███    █▄      ███     ███  ███    █▄                ███ ███    ███ ███    ███ ███                ███  ")
+    imprime("   ███    ███     ███     ███  ███    ███         ▄█    ███ ███    ███ ███    ███ ███▌    ▄    ▄█    ███  ")
+    imprime("   ██████████    ▄████▀   █▀   ████████▀        ▄████████▀   ▀██████▀  ████████▀  █████▄▄██  ▄████████▀   ")
+    imprime("                                                                                                          ")
+    imprime("                                                                                                          ")
+    imprime("                          ┏┓   ┏┓┳┳┳┏┳┓                ┳┓   ┏┓┏┳┓┏┓┳┓┏┳┓                                  ")
+    imprime("                     -~-  ┣┫   ┃┃┃┃┃ ┃  -~-       -~-  ┣┫   ┗┓ ┃ ┣┫┣┫ ┃  -~-                              ")
+    imprime("                          ┛┗•  ┗┻┗┛┻ ┻                 ┻┛•  ┗┛ ┻ ┛┗┛┗ ┻                                   ")
+    imprime("                                                                                                          ")
+    imprime("                                                                                                          ")
+    imprime("                                                                                                          ")
+    enquanto verdadeiro:
+        entrada("Escolha uma opção: ", opcao)
+        se opcao != A && != B:
+            imprime("ERRO: Insira uma opção válida.")
+        se opcao == 0
+            MainMenu = falso
+        se opcao == 1
+            MainMenu = falso
+            CharacterCreation()
+            
+
+
+/* Iniciar a criação da personagem*/
+
+funcao CharacterCreation()
+    imprime("⣿⣿⣿⣿⣿⢌⠳⣜⠻⣼⣿⣿⣿⣿⢌⠳⣿⣿⣿⣿⣿⣿⣿⡿⢌⠟⠋⠀⢌⠳⠈⠀⠣⢌⠳⣜⠻⣼⢯⣿⣿⠋⢌⣿⣿⣿⣿⣿⣿⡿⢌⠳⠋⠀⢌⠀⢌⠀⠀⠣⢌⠳⣜⠻⣼⢯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠳⠳")
+    imprime("⣿⣿⣿⢌⠳⣜⠻⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⢌⠳⠟⠋⢌⠀⠈                     ⠻⣼⢌⠳⠟⠋⢌⠀⠈                    ⠳ ⣼⢌⠳⢌⣼⢌⠳⠟⠋⢌    ")
+    imprime(" ⠈⠀⠣⢌⠳⢌⠳⣜⠻⣼⢯⣿⢌⠳⠟⠋                                   ⠋                                               ")
+    imprime("                                ┏┓┳┓┳┏┓┳┓  ┏┓┏┓┳┓┏┓┏┓┳┓┏┓┏┓┏┓┳┳┓                                          ")
+    imprime("                            -~- ┃-┣┫┃┣┫┣┫  ┃┃┣-┣┫┗┓┃┃┃┃┣┫┃┓┣-┃┃┃ -~-                                      ")
+    imprime("                                ┗┛┛┗┻┛┗┛┗  ┣┛┗┛┛┗┗┛┗┛┛┗┛┗┗┛┗┛┛-┗                                          ")
+    imprime("                                                                                                          ")
+    imprime("                                                                                                          ")
+    imprime("                                                                                                          ")
+    imprime("                                                                                                          ")
+    
+    EscolherGenero()
+
+    
+
+/* Escolher Genero */
+
+funcao EscolherGenero()
+    imprime("                                                                                                          ")
+    imprime("                                        ESCOLHA UM GÉNERO                                                 ")
+    imprime("                            - [A] Masculino -      - [B] Feminino -                  - [X] Sair do Jogo - ")
+    imprime("                                                                                                          ")
+    enquanto Verdadeiro:
+        entrada("A sua escolha: ", opcao)
+            se opcao != A && != B && != X:
+                imprime("ERRO: Insira uma opção válida.")
+            se opcao == X:
+                PlayerCharacter.Genero = "Imput Required"
+                PlayerCharacter.Classe = "Imput Required"
+                PlayerCharacter.Nome = "Imput Required"
+                EscolherGenero = falso
+                MainMenu()
+            senao:
+                se opcao == A:
+                    imprime("Genero "Masculino" escolhido com sucesso")
+                    PlayerCharacter.Genero = Homem
+                    EscolherGenero = falso
+                se opcao == B:
+                    imprime("Genero "Feminino" escolhido com sucesso")
+                    PlayerCharacter.Genero = Mulher
+                    EscolherGenero = falso  
+    imprime("                                                                                                          ")
+    imprime("                                        ESCOLHA UMA OPÇÃO                                                 ")
+    imprime("                         - [A] Alterar Género -      - [B] Escolher Classe -         - [X] Sair do Jogo - ")
+    imprime("                                                                                                          ")
+    enquanto verdadeiro:
+        entrada ("A sua escolha: , " opcao)
+        se opcao != A && != B && != X && =!:
+            imprime("ERRO: Escolha uma classe válida.")
+        se opcao == x:
+            PlayerCharacter.Genero = "Imput Required"
+            PlayerCharacter.Classe = "Imput Required"
+            PlayerCharacter.Nome = "Imput Required"
+            EscolherClasse = falso
+            MainMenu()
+        se opcao == A:
+            EscolherGenero = falso
+            EscolherGenero()
+        se opcao == B:
+            EscolherGenero = falso
+            EscolherClasse()
+            
+                    
+
+/* Escolher uma Classe */
+
+funcao EscolherClasse()
+    imprime("                                                                                                          ")
+    imprime("                                       ESCOLHA UMA CLASSE                                                 ")                     
+    imprime("                                                                                                          ")
+    para cada chave, valor em Classes_Descricoes:
+        imprime(" • " + Chave + ": " + valor                                                                            )
+        entrada("A sua escolha: ", opcao)
+        se opcao != Soldado && != Bandido && != Ermita && =! Arqueiro && != Alquimista && != Mendigo:
+            imprime("ERRO: Escolha uma classe válida.")
+        senao:
+            PlayerCharacter.classe = opcao
+            imprime("                                                                                                          ")
+            imprime("                                        ESCOLHEU A CLASSE                                                 ")
+            imprime(                                               opcao                                                        )
+            imprime("                                                                                                          ")
+            para cada atributo em modelo opcao:
+                imprime (atributo + "    " + "=====>" + "    " + atributo)
+                EscolherClasse = falso
+    imprime("                                                                                                          ")
+    imprime("                                        ESCOLHA UMA OPÇÃO                                                 ")
+    imprime("                     - [A] Alterar Classe -           - [B] Escolher Nome -          - [X] Sair do Jogo - ")
+    imprime("                                                                                                          ")
+    enquanto verdadeiro:
+        entrada("A sua escolha: ", opcao)
+            se opcao != A && !=B && != X:
+                entrada("ERRO: Escolha uma classe válida.")
+            senao:
+                se opcao == X:
+                    PlayerCharacter.Genero = "Imput Required"
+                    PlayerCharacter.Classe = "Imput Required"
+                    PlayerCharacter.Nome = "Imput Required"
+                    EscolherClasse = falso
+                    MainMenu()
+                senao:
+                    se opcao == A:
+                        EscolherClasse = falso
+                        EscolherClasse()
+                    se opcao == B:
+                        EscolherNome()
+               
+                
+/* Escolher um Nome */
+
+funcao EscolherNome()
+    imprime("                                                                                                          ")
+    imprime("                                         ESCOLHA UMA NOME                                                 ")
+    imprime("                                       PARA A SUA PERSONAGEM                                              ")
+    imprime("                                                                                                          ")
+    entrada("Nome: " nome)
+    PlayerCharacter.Nome = nome  
+    imprime("                                                                                                          ")
+    imprime("                                        ESCOLHA UMA OPÇÃO                                                 ")
+    imprime("                        - [A] Alterar Nome -           - [B] Terminar -              - [X] Sair do Jogo - ")
+    imprime("                                                                                                          ")
+    enquanto verdadeiro:
+        entrada("A sua escolha: ", opcao)
+            se opcao !=A && !=B && != X:
+                imprime("ERRO: Escolha uma opção válida.")
+            senao:
+                se opcao == x:
+                    PlayerCharacter.Genero = "Imput Required"
+                    PlayerCharacter.Classe = "Imput Required"
+                    PlayerCharacter.Nome = "Imput Required"
+                    EscolherClasse = falso
+                    MainMenu()
+                senao:
+                    se opcao == A:
+                        EscolherNome = falso
+                        EscolherNome()
+                    se opcao == B:
+                        CharacterFinalization()
+
+
+/* Finalizar Personagem e Iniciar o Jogo*/
+
+funcao CharacterFinalization()
+    imprime("                                                                                                          ")
+    imprime("                                        VALIDAR PERSONAGEM                                                ")
+    imprime("                                         E INICIAR JOGO?                                                  ")
+    imprime("                         - [A] Sim -                       - [B] Não -               - [X] Sair do Jogo - ")
+    imprime("                                                                                                          ")
+    imprime("                                                                                                          ")
+    imprime("    A SUA PERSONAGEM:                                                                                     ")
+    imprime("                                                                                                          ")
+    imprime("GÉNERO" + " ----> " + PlayerCharacter.Genero                                                               )
+    imprime("CLASSE" + " ----> " + PlayerCharacter.Classe                                                               )
+    imprime("NOME"   + " ----> " + PlayerCharacter.Nome                                                                 )
+    imprime("                                                                                                          ")
+    entrada("A sua escolha: ", opcao)
+        se opcao !=A && !=B && != X:
+            entrada("ERRO: Escolha uma classe válida.")
+         se opcao == X:
+            PlayerCharacter.Genero = "Imput Required"
+            PlayerCharacter.Classe = "Imput Required"
+            PlayerCharacter.Nome = "Imput Required"
+            CharacterFinalization = falso
+            MainMenu()
+        senao:
+            se opcao == A:
+                retorne modelo PlayerCharacter
+                CharacterFinalization = falso
+                Jogo()
+            se opcao == B:
+                JogadorIndeciso()
+          
+/* Caso o Jogador queira alterar escolhas prévias*/
+                                                
+funcao JogadorIndeciso()
+    imprime("                                                                                                          ")
+    imprime("                                        O QUE DESEJA ALTERAR                                              ")
+    imprime("                                         NA SUA PERSONAGEM?                                               ")
+    imprime("  - [A] Nada -    - [B] Tudo -    - [C] Género -   - [D] Classe -   - [E] Nome -     - [X] Sair do Jogo - ")
+    imprime("                                                                                                          ")                                                   
+    imprime("                                                                                                          ")
+    entrada("A sua escolha: ", opcao)
+        se opcao !=A && !=B && != C && != D && != E && != X:
+            entrada("ERRO: Escolha uma opção válida.")
+        se opcao == X:
+            PlayerCharacter.Genero = "Imput Required"
+            PlayerCharacter.Classe = "Imput Required"
+            PlayerCharacter.Nome = "Imput Required"
+            JogadorIndeciso = falso
+            MainMenu()
+        senao:
+            se opcao == A:
+                CharacterFinalization()
+            se opcao == B:
+                PlayerCharacter.Genero = "Imput Required"
+                PlayerCharacter.Classe = "Imput Required"
+                PlayerCharacter.Nome = "Imput Required"
+                CharacterFinalization = falso
+                CharacterCreation()
+            se opcao == C:
+                EscolherGenero()
+            se opcao == D:
+                EscolherClasse()
+            se opcao == E:
+                EscolherNome()
+
+
+
+                                    
+
+
+
+
+/* =======================================================================================================================================*/

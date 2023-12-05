@@ -1,0 +1,79 @@
+/* Imports*/
+
+importar Classes.pseudoscript
+
+/* Tipos de User Imput, para navegar o jogo */
+
+/*Funcao para dar "Next" aos textos que vemos no jogo. */
+
+funcao FancyNext()
+    imprime("                                                                                                          ")
+    imprime("                                             [ENTER] NEXT ->                                              ")
+    imprime("                                                                                                          ")
+    enquanto verdadeiro:
+        entrada("", opcao)
+            se opcao == "":
+                FancyNext = falso
+
+
+funcao Next()
+    imprime("                                                                                                          ")
+    enquanto verdadeiro:
+        entrada("", opcao)
+            se opcao == "":
+                Next = falso
+
+
+/* 2.2 Funcao para observar aos arredores. Decidi adicionar esta funcao para que, unicamente através de texto, o jogador tenha
+a sensação de explorar aquilo que está à sua volta.*/
+
+funcao ObservarArredores()
+    
+    imprime("                                                                                                          ")
+    imprime("                                    [ENTER] OBSERVAR ARREDORES                                            ")
+    imprime("                                                                                                          ")
+    enquanto verdadeiro:
+        entrada("", opcao)
+            se opcao == "":
+                Next == false
+
+
+
+/*2.3 Funcao Usar Abilidade*/
+
+funcao UsarAbilidade()
+    imprime("                                                                                                          ")
+    imprime("                                         HABILIDADES                                                      ")
+    imprime("                                      DO" + PlayerCharacter.Classe +                                  "[X]")
+    imprime("                                                                                                          ")
+    imprime("      Habilidades:                                                                                        ")
+        para cada habilidade em modelo(PlayerCharacter.Classe):
+            para cada i de A a D:
+                imprime:("[" + i + "]" + habilidade)
+                imprime("                                                                                                          ")
+                entrada("A sua escolha: ", opcao)
+                se opcao != A && != B  && != C && != D != X:
+                    imprime("ERRO: Escolha uma opção válida.")
+                se opcao == X:
+                    imprime("                                                                                                          ")
+                    imprime("                                         SAIR DO JOGO?                                                    ")
+                    imprime("                                   [A] SIM         [B] Não                                                ")
+                    entrada ("A sua escolha: ", opcao)
+                            se opcao == A:
+                                Sair
+                                MainMenu()
+                            se opcao == B:
+                                UsarAbilidade()
+                senao:
+                    se opcao == A:
+                        PlayerCharacter.Abilidade1()
+                    se opcao == B:
+                        PlayerCharacter.Abilidade2()
+                    se opcao == C:
+                        PlayerCharacter.Abilidade3()
+                    se opcao == D:
+                        PlayerCharacter.Abilidade4()
+                
+
+
+

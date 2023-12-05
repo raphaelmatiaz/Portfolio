@@ -1,0 +1,33 @@
+/* =================== ENUNCIADO =========================================================================
+
+15. Jogo de RPG Textual: Contexto - Criar um jogo de RPG textual onde o utilizador pode
+criar uma personagem, explorar um mundo fictício e tomar decisões que afetam o
+enredo. Nota: O aluno deve criar estruturas para representar o personagem e o
+mundo do jogo. */
+
+/* ================== NOTAS (opcional) ===================================================================
+
+/* ================== RESOLUÇÃO I ======================================================================== */
+
+
+/* ======= SETUP SECTION =======  */
+
+
+/* 1. Importações*/
+
+
+
+importar Classes.pseudoscript /* 1.1. Importação das Classes */
+
+importar Jogo.pseudoscript /* 1.2. Importação da Narrativa e Situações/Dilemas */
+
+importar MainMenu&CharCreation.pseudoscript /* 1.3. Importação dos sitemas: Menu principal e Criação de Personagem/Iniciar Jogo*/
+
+importar UserImputs&OpcoesDeJogo.pseudoscript /* Funcoes para navegar o jogo. "Opcoes de Gameplay" de certa forma.*/
+
+importar InGameVisuals.pseudoscript /* Funcoes para fazer aparecer "blocos visuais" no jogo, em certas situações*/
+    
+
+/* ======= PROGRAM EXECUTION =======  */
+
+LaunchGame()

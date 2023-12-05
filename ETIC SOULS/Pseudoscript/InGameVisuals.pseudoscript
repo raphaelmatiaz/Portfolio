@@ -1,0 +1,84 @@
+
+
+/* YOU DIED */
+
+funcao ASCII_YouDied()
+    imprime("                                                                                                          ")
+    imprime("              ▄██   ▄    ▄██████▄  ███    █▄       ████████▄   ▄█     ▄████████ ████████▄                 ")
+    imprime("              ███   ██▄ ███    ███ ███    ███      ███   ▀███ ███    ███    ███ ███   ▀███                ")
+    imprime("              ███▄▄▄███ ███    ███ ███    ███      ███    ███ ███▌   ███    █▀  ███    ███                ")
+    imprime("              ▀▀▀▀▀▀███ ███    ███ ███    ███      ███    ███ ███▌  ▄███▄▄▄     ███    ███                ")
+    imprime("              ▄██   ███ ███    ███ ███    ███      ███    ███ ███▌ ▀▀███▀▀▀     ███    ███                ")
+    imprime("              ███   ███ ███    ███ ███    ███      ███    ███ ███    ███    █▄  ███    ███                ")
+    imprime("              ███   ███ ███    ███ ███    ███      ███   ▄███ ███    ███    ███ ███   ▄███                ")
+    imprime("               ▀█████▀   ▀██████▀  ████████▀       ████████▀  █▀     ██████████ ████████▀                 ")
+    imprime("                                                                                                          ")
+    imprime("                          ┏┓   ┏┓┳┳┳┏┳┓                ┳┓   ┳┓┏┓┏┓┏┳┓┏┓┳┓┏┳┓                              ")
+    imprime("                     -~-  ┣┫   ┃┃┃┃┃ ┃  -~-       -~-  ┣┫   ┣┫┣ ┗┓ ┃ ┣┫┣┫ ┃   -~-                         ")
+    imprime("                          ┛┗•  ┗┻┗┛┻ ┻                 ┻┛•  ┛┗┗┛┗┛ ┻ ┛┗┛┗ ┻                               ")
+    imprime("                                                                                                          ")
+    enquanto verdadeiro:
+        entrada("Escolha uma opção: ", opcao)
+            se opcao != A && != B:
+                imprime("ERRO: Insira uma opção válida.")
+            senao:
+                se opcao == A:
+                    imprime("                                                                                                          ")
+                    imprime("                                        SAIR DO JOGO?                                                     ")
+                    imprime("                                  IRÁ PERDER TODO O PROGRESSO                                             ")
+                    imprime("                         - [A] Sim -                       - [B] Não -                                    ")
+                    imprime("                                                                                                          ")
+                    imprime("                                                                                                          ")
+                    entrada("Escolha uma opção: ", opcao)
+                        se opcao != A && != B:
+                            imprime("ERRO: Insira uma opção válida.")
+                        se opcao == A:
+                            YouDied = falso
+                            MainMenu()
+                        se opcao == B:
+                            YouDied = falso
+                            YouDied()
+                se opcao == B:
+                    YouDied = falso
+                    Jogo()
+                
+funcao OponenteDerrotado()
+    
+
+                
+                
+
+/* OBSERVAR */
+
+funcao ASCII_OLHO()
+    imprime("                                                                                                          ")
+    imprime("          ⠀⠀       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                   ")
+    imprime("          ⠀⠀⠀⠀⠀⠀⠀⠀       ⠀⠀⠀⢀⣄⠀⠀⢿⡇⠀⠀⣾⢀⣸⣄⠀⢠⡐⡄⣹⠀⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                 ")
+    imprime("⠀⠀          ⠀⠀⠀⠀⠀⠀       ⡀⠀⢧⢘⣼⣤⠴⠾⣿⡛⠋⣿⡏⢹⡏⠉⣽⢻⢛⡟⢲⡿⣤⣠⣆⡔⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                               ")
+    imprime("⠀⠀⠀⠀⠀⠀⠀                 ⠀⢻⣤⡼⠿⣟⣿⣷⣤⣸⣿⣦⣿⣷⣿⣷⣾⣿⣿⣿⣷⣟⣁⣴⡿⠟⠲⣤⣴⠃⠀⢀⠄⠀⠀⠀⠀⠀                              ")
+    imprime("⠀⠀⠀          ⠀⠀       ⠰⣼⣶⣎⣉⣙⣿⣿⠿⢻⣿⠟⠋⠉⠙⢟⣛⠀⠀⠀⠙⠟⢿⡙⠛⠿⣶⣶⡾⠋⢉⣳⣴⡟⡠⠀⢀⢀⠀⠀                             ")
+    imprime("⠀⠀⠀                 ⠠⣄⣠⣋⣉⣹⣿⠟⠋⠀⠀⡾⠁⠀⠀⢀⣾⣿⣿⣿⠷⠀⢤⡀⠈⣷⠀⠀⠀⠉⠻⢿⣿⣿⡿⠛⢧⣠⣾⠞⠀⠀                             ")
+    imprime("⠀⠀                 ⠦⣀⣞⣭⣽⡿⠟⠁⠀⠀⠀⠀⡇⠀⠀⠀⢸⣿⣿⣿⣿⣄⣀⣠⠇⠀⢸⠀⠀⠀⠀⠀⠀⠈⠛⣾⣿⣿⣯⠴⠂⣀⡴                              ")
+    imprime("⠀                 ⠐⠦⠴⣶⡿⡟⠀⠀⠀⠀⠀⠀⠀⣷⠀⠀⠀⠘⢿⣿⣿⣿⡿⠃⠀⠀⠀⡿⠀⠀⠀⠀⠀⠀⢀⣾⣿⣭⣍⡉⠉⠉⠁⠀                              ")
+    imprime("                 ⢠⠎⢩⠟⠋⢃⢳⠀⠀⠀⠀⠀⠀⠀⠘⣷⡀⠀⠀⠀⠀⠉⠀⠀⠀⠀⢀⡾⠁⠀⠀⠀⠀⣀⣴⣿⣟⣋⠉⠉⡓⠦⠀⠀⠀                               ")
+    imprime("                 ⠘⣄⠘⠒⠒⠘⠢⠧⢤⣀⡀⠀⠀⠀⠀⠈⠻⢦⣀⠀⠀⠀⠀⢀⣀⡴⠛⠁⠀⠀⣀⣤⣾⣿⣏⡉⠉⢉⡿⠿⠀⠀⠀⠀                              ")
+    imprime("⠀⠀                 ⠉⠁⠀⠀⠀⠦⢤⡾⣿⡿⣷⣶⣦⣤⣄⣀⣈⣉⣉⣉⣉⣉⣁⣠⣤⣴⣾⡿⣿⣿⢧⡀⠈⣹⠶⠋⠀⠀⠀                                 ")
+    imprime("⠀⠀⠀⠀⠀⠀⠀⠀⠀                 ⠈⠓⠤⣋⠁⡼⠛⠛⡿⣿⠖⢛⣿⠛⠛⣿⡟⠛⠻⣿⡱⠄⠉⣣⠼⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀                              ")
+    imprime("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                 ⠀⠉⠓⠤⢤⣹⣁⠀⢸⡇⠀⠀⠸⡃⣀⣀⠬⠷⠒⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                ")
+    imprime("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                 ⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                  ")
+    imprime("                                     ┏┓┳┓┏┓┏┓┳┓┓┏┏┓┳┓                                                     ")
+    imprime("                                 -~- ┃┃┣┫┗┓┣ ┣┫┃┃┣┫┣┫ -~-                                                 ")
+    imprime("                                     ┗┛┻┛┗┛┗┛┛┗┗┛┛┗┛┗                                                     ")
+    imprime("                                                                                                          ")
+    imprime(" -~- OBSERVAÇÕES -~-                                                                                      ")
+    imprime("                                                                                                          ")
+
+
+
+
+*/
+
+
+
+                
+

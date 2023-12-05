@@ -1,0 +1,313 @@
+/* ================================================================================================================*/
+
+/*Classe PlayerCharacter (Contentor para as informações do personagem do jogador) */
+
+modelo PlayerCharacter
+    construtor(Genero, Classe, Nome)
+        PlayerCharacter.Genero = "Imput Required"
+        PlayerCharacter.Classe = "Imput Required"
+        PlayerCharacter.Nome = "Imput Required"
+        PlayerCharacter.Barulhento = null /*ainda preciso de definir se é barulhento ou não*/
+
+
+
+/* ============================ CLASSES ============================*/
+
+/* Classe Soldado*/
+
+modelo Soldado
+    construtor(Vida, Forca, Energia, Inteligencia, Barulhento, Abilidades{1,2,3,4}, Equipamento, Armas):
+        Soldado.Vida = 100
+        Soldado.Forca = 60
+        Soldado.Energia = 80
+        Soldado.Inteligencia = 20
+        Soldado.Barulhento = verdadeiro
+
+        Soldado.Abilidade1 = Esquivar()
+        Soldado.Abilidade2 = Atacar()
+        Soldado.Abilidade3 = Bloquear()
+        Soldado.Abilidade4 = FrontKick()
+
+        Soldado.Equipamento = ('Cabeça'->'Capacete de Ferro', 'Tronco'->'Armadura de Ferro', 'Mãos'->'Manoplas de Ferro', 'Pernas'->'Leggins de Ferro')
+        Soldado.Armas = ('Mão Direita'->'Espada de Ferro', 'Mão Esquerda'->'Escudo de Ferro', ''->'', )
+
+/* Classe Bandido*/
+
+modelo Bandido
+    construtor(Vida, Forca, Energia, Inteligencia, Barulhento, Abilidades{1,2,3,4}, Equipamento, Armas):
+        Bandido.Vida = 60
+        Bandido.Forca = 30
+        Bandido.Energia = 150
+        Bandido.Inteligencia = 50
+        Bandido.Barulhento = falso
+
+        Bandido.Abilidade1 = Esquivar()
+        Bandido.Abilidade2 = Roubar()
+        Bandido.Abilidade3 = BackStab()
+        Bandido.Abilidade4 = Camuflar()
+
+        Bandido.Equipamento = ('Cabeça'->'Capuz Ocultante', 'Tronco'->'Capa de Cabedal Preta', 'Mãos'->'Luvas de Cabedal Pretas', 'Pernas'->'Calças de Cabedal Preto')
+        Bandido.Armas = ('Mão Direita'->'Punhal', 'Mão Esquerda'->'null', ''->'', )
+        Bandido.Inventario = []
+
+/* Classe Ermita*/
+
+modelo Ermita
+    construtor(Vida, Forca, Energia, Inteligencia, Barulhento, Abilidades{1,2,3,4}, Equipamento, Armas):
+        Ermita.Vida = 120
+        Ermita.Forca = 120
+        Ermita.Energia = 60
+        Ermita.Inteligencia = 10
+        Ermita.Barulhento = verdadeiro
+        
+        Ermita.Abilidade1 = Esquivar()
+        Ermita.Abilidade2 = Intimidar()
+        Ermita.Abilidade3 = Atacar()
+        Ermita.Abilidade4 = Camuflar()
+
+        Ermita.Equipamento = ('Cabeça'->'null', 'Tronco'->'null', 'Mãos'->'null', 'Pernas'->'Velhas Calças Rotas')
+        Ermita.Armas = ('Mão Direita'->'null', 'Mão Esquerda'->'null', ''->'', )
+
+/* Classe Arqueiro*/
+
+modelo Arqueiro
+    construtor(Vida, Forca, Energia, Inteligencia, Barulhento, Abilidades{1,2,3,4}, Equipamento, Armas):
+        Arqueiro.Vida = 60
+        Arqueiro.Forca = 30
+        Arqueiro.Energia = 120
+        Arqueiro.Inteligencia = 60
+        Arqueiro.Barulhento = falso
+
+        Arqueiro.Abilidade1 = Esquivar()
+        Arqueiro.Abilidade2 = Atacar()
+        Arqueiro.Abilidade3 = DespararFlecha()
+        Arqueiro.Abilidade4 = Camuflar()
+
+        Arqueiro.Equipamento = ('Cabeça'->'Capuz de tecido', 'Tronco'->'Armadura de Cabedal', 'Mãos'->'null', 'Pernas'->'Leggins de Cabedal')
+        Arqueiro.Armas = ('Mão Direita'->'Punhal', 'Mão Esquerda'->'Arco', ''->'', )
+        Arqueiro.Consumiveis = ('Flechas'->'10')
+
+/* Classe Alquimista*/
+
+modelo Alquimista
+    construtor(Vida, Forca, Energia, Inteligencia, Barulhento, Abilidades{1,2,3,4}, Equipamento, Armas):
+        Alquimista.Vida = 60
+        Alquimista.Forca = 10
+        Alquimista.Energia = 120
+        Alquimista.Inteligencia = 60
+        Alquimista.Barulhento = falso
+
+        Alquimista.Abilidade1 = Esquivar()
+        Alquimista.Abilidade2 = Atacar()
+        Alquimista.Abilidade3 = UsarPocao()
+        Alquimista.Abilidade4 = FabricarPocao()
+
+        Alquimista.Equipamento = ('Cabeça'->'null', 'Tronco'->'Vestes de Alquimista', 'Mãos'->'null', 'Pernas'->'Calças de Tecido')
+        Alquimista.Armas = ('Mão Direita'->'Punhal', 'Mão Esquerda'->'Consumivel(x)', ''->'', )
+        Alquimista.Consumiveis = ('Poção de Vida'->'1', 'Frasco de Veneno'->'1', 'Frasco Explosivo'->'1')
+
+/* Classe Mendigo*/
+
+modelo Mendigo
+    construtor(Vida, Forca, Energia, Inteligencia, Barulhento, Abilidades{1,2,3,4}, Equipamento, Armas):
+        Mendigo.Vida = 10
+        Mendigo.Forca = 10
+        Mendigo.Energia = 20
+        Mendigo.Inteligencia = 10
+        Mendigo.Barulhento = falso
+
+        Mendigo.Abilidade1 = Esquivar()
+        Mendigo.Abilidade2 = Atacar()
+        Mendigo.Abilidade3 = AskForMercy()
+        Mendigo.Abilidade4 = Camuflar()
+
+        Mendigo.Equipamento = ('Cabeça'->'null', 'Tronco'->'null', 'Mãos'->'null', 'Pernas'->'Velhos Trapos Sujos')
+        Mendigo.Armas = ('Mão Direita'->'Pau Partido', 'Mão Esquerda'->'null')
+   
+
+
+/*mapa de Classes->Descrições de Classes*/
+
+Classes_Descricoes = ("
+'Soldado'->'"Um Soldado radiante, vestido em armadura de ferro inabalável. Efetivo em combate aproximado."',
+'Bandido'->'"Um bandido sombrio que prospera na escuridão. Furtivo, o combate não é o seu forte, mas vitória não é sinónimo de afronto direto."',
+'Ermita'->'"Um humano solitário que sobrevive na floresta isolada com a simples força dos punhos. Possivelmente louco, devido aos anos de solidão"', 
+'Arqueiro'->'Um Arqueiro de precisão letal. Combatente intimidante em duelos à distancia, mas capaz de se defender ao corpo-a-corpo."', 
+'Alquimista'->'Um Alquimista que domina as artes místicas. Um mestre das poções e preparações arcanas. Particularmente culto e informado.', 
+'Mendigo'->'"Um Mendigo sem nome. Uma alma destituída pela vida, sem nada a perder. Fraco e fragil, por vezes desejante de nunca ter existido.'
+")
+
+/* ================================================================================================================================================================================*/
+
+/* Habilidades*/
+
+
+
+/* ESQUIVAR */
+
+funcao Esquivar()
+    se (PlayerClass).Energia >= 10:
+        (PlayerClass).Energia = (PlayerClass).Energia - 10
+        numeroAleatorio = numeroAleatorio(0, 1, 2)
+        se numeroAleatorio == 1:
+            sucesso = verdadeiro
+        se numeroAleatorio == 2:
+            sucesso = verdadeiro
+        se numeroAleatorio == 0:
+            sucesso = falso
+
+    
+    se sucesso = falso:
+        se GettingAttacked = verdadeiro:
+            (PlayerClass).Vida = (PlayerClass).Vida - (AttackPower - PlayerArmor)
+    
+    se sucesso = verdadeiro:
+        (PlayerClass).Vida = (PlayerClass).Vida
+
+
+/* ATACAR */
+
+funcao Atacar()
+    se (PlayerClass).Energia >= 10:
+        (PlayerClass).Energia = (PlayerClass).Energia - 10
+    se PlayerClass == Mendigo:
+        numeroAleatorio = numeroAleatorio(0, 1, 2, 3, 4)
+        se numeroAleatorio != 0:
+            sucesso = falso
+        senao:
+            sucesso = verdadeiro
+    senao:
+        numeroAleatorio = numeroAleatorio(0, 1, 2)
+        se numeroAleatorio == 0:
+            sucesso = falso
+        senao:
+            sucesso = verdadeiro
+
+    se sucesso = falso:
+         (Oponente).Vida = (Oponente).Vida 
+    se sucesso = verdadeiro:
+        se (PlayerClass) != Ermita:
+            (Oponente).Vida = (Oponente).Vida - (DanoDaArma * ((PlayerClass.Forca / 3)))
+        senao:
+            (Oponente).Vida = (Oponente).Vida - (PlayerClass).Forca
+
+        
+
+/* BLOQUEAR (Exclusivo Soldado) */
+
+funcao Bloquear()
+    (Oponente).AttackPower - (PlayerClass).Energia -> UnblockedDamage
+        se UnblockedDamage > 0:
+            (PlayerClass).Vida = (PlayerClass).Vida - (UnblockedDamage / PlayerArmor)
+        senao:
+            (PlayerClass).Vida = (PlayerClass).Vida
+
+    se (Oponente).AttackPower >= (PlayerClass).Energia:
+        (PlayerClass).Energia = 0
+    senao:
+        (PlayerClass).Energia = (PlayerClass).Energia - (Oponente).AttackPower
+
+
+
+/* FrontKick (Exclusivo Soldado) */
+
+funcao FrontKick()
+    se (Oponente).Bloquear = verdadeiro:
+        (Oponente).Bloquear = falso
+        (Oponente).Energia = 0
+
+    se (Oponente).SitioPrecario = verdadeiro:
+        (Oponente).Vida = 0
+        
+
+
+/* ROUBAR (Exclusivo Bandido)*/
+
+funcao Roubar()
+    se objetoInteragivel = verdadeiro:
+        (PlayerClass).Inventario.adicionar [objetoInteragivel]
+
+        
+/* BACKSTAB (Exclusivo Bandido) */
+
+funcao BackStab()
+    se (PlayerClass).Camuflado = verdadeiro
+        se (PlayerClass).Energia >= (Oponente).Vida
+            (PlayerClass).Energia = (PlayerClass).Energia - (Oponente).Vida 
+            (Oponente).Vida = 0
+        senao:
+            imprime("Não tens energia suficiente para usar [BackStab] neste oponente.")
+    senao:
+        imprime ("Tens de estar camuflado para usar [BackStab].")
+
+
+
+/* CAMUFLAR (Exclusivo Ermita) */
+
+funcao Camuflar()
+    se (PlayerClass).Camuflado = falso:
+        numeroAleatorio = numeroAleatorio(0, 1, 2, 4)
+        se numeroAleatorio == 0:
+            (PlayerClass).Camuflado = falso
+            imprime("Não te conseguiste camuflar.")
+        senao:
+            (PlayerClass).Camuflado = verdadeiro
+            imprime("Conseguiste camuflar-te.")
+
+
+
+/* INTIMIDAR (Exclusivo Ermita) */
+
+funcao Intimidar()
+    imprime("Érgues-te e gritas como um animal:")
+    next()
+    imprime((PlayerCharacter.Name) + ": RRRRHEEEEAOOOOOOOOOO00AAAAR!!!")
+    next()
+    (PlayerClass).Energia = (PlayerClass).Energia -20
+        numeroAleatorio = numeroAleatorio(0, 1)
+        se numeroAleatorio == 0:
+            imprime("A tua tentativa de intimidar " Oponente "não resultou.")
+        senao:
+            imprime("Intimidàste " + Oponente + "com sucesso.")
+            imprime(Oponente + "ficou aterrorizado e fugiu!")
+
+
+/* DESPARAR FLECHA (Exclusivo Arqueiro)*/
+
+funcao DespararFlecha()
+    imprime("Armas o teu arco com uma flecha e desparas:")
+    next()
+    (PlayerClass).Energia = (PlayerClass).Energia -20
+    numeroAleatorio = numeroAleatorio(0, 1, 2 , 3, 4, 5, 6, 7, 8, 9)
+    se numeroAleatorio == 0:
+        imprime("Falhaste o teu tiro. A flecha passou ao lado de " Oponente ".")
+    senao:
+        ParteDoCorpoAtingida_Aleatoria = ParteDoCorpoAtingida_Aleatoria(0, 1, 3, 4)
+        se ParteDoCorpoAtingida_Aleatoria == 0:
+            (Oponente).Vida = 0
+            imprime("A flecha atingiu a cabeça de " + Oponente + ".")
+            next()
+            imprime(Oponente +"morreu" ".")
+        se ParteDoCorpoAtingida_Aleatoria == 1:
+            (Oponente).Vida = (Oponente).Vida - 30
+            imprime("A flecha atingiu a barriga de " + Oponente + ".")
+            next()
+        se ParteDoCorpoAtingida_Aleatoria == 3:
+            (Oponente).Vida = (Oponente).Vida - 20
+            imprime("A flecha atingiu o braço de " + Oponente + ".")
+        se ParteDoCorpoAtingida_Aleatoria == 4:
+            (Oponente).Vida = (Oponente).Vida - 20
+            next()
+            imprime("A flecha atingiu o joelho de " + Oponente + ".")
+            imprime("EASTER EGG: An Arrow to the Knee!")
+            next()
+    se (Oponente).Vida <= 0:
+        imprime(Oponente "morreu!")
+    senao:
+        imprime("sofreu dano mas continua vivo!")
+
+
+
+
+
+
