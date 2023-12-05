@@ -1,0 +1,239 @@
+Projeto Final (Programação I) - Gestor de Despesas 
+Rafael Matias
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+				MANUAL DE UTILIZADOR
+
+Introdução:
+
+A APP "Gestor de Dispesas" permite a um utilizador, gerir e monitorizar movimentos financeiros pessoais (Débitos e Créditos)
+
+O Utilizador pode registar movimentos manualmente, especificando as informações únicas a aos mesmos, das quais Tipo (Crédido ou Débito), Montante, Categoria, Descrição do movimento.
+
+O Utilizador pode criar e reutilizar categorias, às quais pode associar movimentos.
+
+Um saldo total assim como um saldo individual a cada categoria, será calculado em função dos movimentos do utilizador, e acessivel atravez do menú dedicado.
+
+
+
+Guião:
+
+Ao abrir a app, no menu principal da app "Main Menu", existem três opções:
+	
+	1 - Digitar "X" para fechar a APP
+	2 - Digitar "A" para aceder ao menu "Adicionar Movimento".
+	3 - Digitar "B" para aceder ao menu "Visualizar Movimentos".
+	
+
+	Pormenores:
+	
+	1 - O programa simplesmente feixa.
+	
+	2 - Abre-se o menu "Adicionar Movimento", no qual três opções se apresentam:
+	
+		A - Digitar "X" para regressar ao menu principal "Main Menu" e anular a criação de um novo movimento.
+		
+		B - Digitar "A" para definir o novo movimento como sendo um "Crédito"
+		
+			 
+		C - Digitar "B" para definir o novo movimento como sendo um "Crédito"
+		
+		Após ter escolhido ou "A" ou "B", serie de outras entradas
+		
+		2.1 - Digitar um nome para o movimento
+		
+		2.2 - Digitar um montante para o movimento
+		
+		2.3 - Associar uma categoria ao movimento. Escolher entre duas opções:
+		
+			A - Categoria existente: vamos ter a um menu onde são listadas as categorias existentes, préviamente criadas das quais o utilizador pode escolher uma
+			
+			B - Nova Categoria: vamos ter a um meno de criação de nova categoria onde é simplesmente requerido que o utilizador lhe atribue um nome.
+		
+		2.4 - (Opcional) Escrever uma descrição para o movimento
+		
+		2.5 - O movimento é registado em função dos dados inseridos pelo utilizador e regressamos ao menu principal.
+		
+	3 - Abre-se o menu "Visualizar Movimentos, no qual existem cinco opções:
+	
+		A - Digitar "X" para regressar ao menu principal
+		B - Digitar "A" para visualisar uma lista de todos os movimentos registados pelo utilizador. Podemos depois digitar "X" para voltar a trás
+		C - Digitar "B" para visualizar os movimentos segmentados e separados consoante as suas respetivas categorias.Podemos depois digitar "X" para voltar a trás
+		D - Digitar "C" para visualizar o saldo total. Podemos depois digitar "X" para voltar a trás
+		E - Digitar "D" para visualizar o saldo especifico a cada categoria. Podemos depois digitar "X" para voltar a trás
+
+
+
+
+
+
+======================================================================================================================================
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+							DETALHES TÉCNICOS & PENSAMENTO
+
+
+- À medida que ia realizando o projeto, acabei por decidir organizar o projeto em 3 ficheiros: 
+
+	1 - Base de Dados
+	2 - Funções
+	3 - START
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	1 - Base de Dados:
+
+		Na base de dados tenho apenas dois modelos: um modelo "Movimento" e um modelo "User. Usei modelos porque achei serem os
+ contentores mais optimais para guardar dados relativos a uma mesma "coisa", e para ter a pocibilidade de criar "cópias" sob forma de 
+instancias do modelo movimento, pois segundo o que o programa pretende resolver, subentende-se a necessidade de criação recorrente de "Movimentos".
+
+		O modelo "Movimento serve para criar uma instancia de movimento, com características únicas específicadas pelo utilizador. 
+
+		O modelo "User" serve para guardar dados relativos ao user. Nomeadamente o Saldo Total ( calculo da soma de todos os movimentos)
+ e os movimentos em si. Os movimentos estão guardados dentro de uma lista de mapas, onde cada paridade chave->valor é: 
+
+			chave: (categoria criada pelo utilizador) -> valor: (lista de instancias do modelo movimento, associados a essa categoria)
+		
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	2 - Funções:
+
+		As funções que criei são chamadas a partir do ficheiro START, em situações específicas segundo a navegação do utilizador.
+
+		Funções: "ListarTodosMovimentos()", "ListarMovimentosPorCategoria()" e "ListarCategorias()" - servem para apresentar ao utilizador
+		o que está especificado no nome da função (Todos os movimentos, Movimentos segmentados por categorias, as categorias registadas
+		pelo utilizador).
+	
+		Funções: "CalcularSaldo()", "MostrarSaldoTotal()" e "MostrarSaldoPorCategoria()" - são relativas, respetivamente: ao calculo
+		do saldo total (registado no modelo User em User.Saldo), apresentar esse mesmo saldo (visualmente) ao utilizador, e 
+		Calcular + Apresentar de forma visual o saldo individual de cada categoria de movimentos.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	3 - START:
+
+		O ficheiro START poderia ter sido menos extens. Poderia ter outros ficheiros nos quais tinha guardado os sub-menus derivados
+		do meu menu principal, mas decidi deixar a maioria dos menus/submenus no START porque me faz mais sentido, facilita-me a leitura
+		e compreenção do código.
+
+		A partir de START podemos aceder aos menus de registo de novo movimento, para adicionar um novo movimento, ou ao menu de
+		visualização para visualizar diferentes informações
+
+-		-		-		-		-		-		-		-		-	
+
+		3.1 Registar um novo movimento
+
+			Uma instancia do objeto/modelo "Movimento é criada sem atributos. Uma sequancia de imputs utilizador vão atualizar
+			e completar a instancia aos poucos.	
+			
+			Na primeira etapa deste menu, o user pode regressar ao menu principal (caso se tenha enganado e não queira atravessar 
+			as várias etapas de registo de novo movimento) segundo o GPT, por norma nas linguagens que usam objetos não é necessário
+			eliminar a instancia inutilizadas de objectos/modelos. Por isso não elimino a instancia neste caso.
+			
+			O user escolhe se é debito ou credito ---> Instancia do "movimento" atualiza-se
+
+			O user escolhe um nome ---> Instancia do "movimento" atualiza-se  (podia ter feito os imputs em ordem um pouco mais logica: )
+
+			O user escolhe: 
+
+				Uma categoria existente: As categorias são-lhe listadas e é-lhe pedido uma escolha. 
+				Caso não haja categorias, aparece "Não há categorias" ---> Instancia do "movimento" atualiza-se
+			
+				Criar nova categoria: É pedido ao user que ele digite um nome para uma nova categoria. 
+				A categoria é criada uma categoria ---> Instancia do "movimento" atualiza-se
+
+			O user escolhe:
+			
+				Escrever uma descrição ---> Instancia do "movimento" atualiza-se
+				Não escrever descrição ---> Instancia do "movimento" não se atualiza. Fica igual à instancia da etapa anterior
+
+
+			Finalmente:
+
+			Se a Categoria já existia: a instancia de "Novo Movimento" é adicionado à lista de Movimentos daquela categoria
+			(adicionado à lista que é o valor da chave(categoria) que está contida no modelo User no atributo User.Movimentos.
+			a tal lista de mapas)
+
+			Se a Categoria não existe: nessa mesma lista de mapas, cria-se uma nova paridade chave-> valor, onde a chave é a nova 
+			categoria e o valor é uma nova lista à qual adicionamos o primeiro movimento nessa categoria. Este mapa fica disponivel
+			para adicionar mais movimentos mais tarde, naquela categoria.
+			
+			O user retorna automaticamente ao menu principal. Hesitei em retorna-lo ao menu "Adicionar Movimento" para ele adicionar
+			mais um movimento caso queira, mas num contexto real de utilização desta aplicação, achei mais realista e user friendly 
+			retorna-lo para o menu principal. Achei menos provavel um utilizador querer registar mais que um movimento do que apenas um.
+
+-		-		-		-		-		-		-		-		-	
+
+		3.2 Visualizar Movimentos
+
+			3.2.1 - Neste menu podemos digitar "X" para voltar a trás, ao menu principal
+
+			3.2.2 - Visualizar Todos os Movimentos:
+			
+				Esta opção chama a função "ListarTodosMovimentos()" que vai começar por verificar se o tamanho da lista
+				de mapas categoria->movimentos é superior a zero. Ser for, para cada movimento (independentemente da sua
+				categoria), o movimento será listado. Depois ao digitar "X" podemos voltar a trás.
+
+			3.2.3 - Visualizar Movimentos por Categoria:
+				
+				Esta opção chama a função "ListarMovimentosPorCategoria()" que vai começar por verificar se o tamanho da lista
+				de mapas categoria->movimentos é superior a zero. Ser for, para cada categoria, será apresentada a lista de
+				todos os movimentos dentro dessa categoria.
+
+			3.2.4 - Saldo Total
+
+				Esta opção chama a função "MostrarSaldoTotal()", que chama a funcao "CalcularSaldo()". Esta função calcula o saldo 
+				total e a outra trata-se de mostrar o resultado ao utilizador. Depois "X" ---> leva-nos a para trás.
+			
+			3.2.5 - Saldo por Categoria
+
+				Esta opção chama a função "MostrarSaldoPorCategoria()" que começa por inicializar uma lista de mapas vazia
+				chamada "saldoPorCategoria".
+			
+				Depois, para cada categoria->movimentos em DataBase.User.Movimentos:
+				
+					o saldo é definido a zero para não haver problemas de calculos
+					
+					e para cada movimento individual dentro da lista de movimentos
+
+						se for um credito ----> calculamos o saldo mais o valor do credito
+						se for um debito ----> calculamos o saldo menos o valor do debito
+
+					retornamos o valor final do saldo para essa categoria
+
+					criamos um mapa no qual a chave é o nome da categoria e o valor é o saldo retornado para essa categoria
+					
+					adicionamos esse mapa à lista de mapas préviamente declarada "saldoPorCategoria".
+						
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+						NOTAS ADICIONAIS
+
+
+- Sempre que haver um "UserChoosing = verdadeiro" é para usar essa variavel como "verificador" para quebrar um while loop "enquanto".
+- Acontence no código haver um while loop dentro de um while loop. O outer loop será então controlado com "UserChoosing" e o inner 
+loop com "UserChoosing2"
+
+- Para cada while loop tentei anticipar os erros que o user poderia cometer ao dar imput, que podessem causar problemas com o programa
+e criei mensagens de erro para guiar o user, mantendo-o dentro do loop até acontecer um imput válido. Exemplo:
+
+	O user nunca poderá dar imputs não especificados (com exceção de "Nome" "Montante" "Categoria" e "Descrição" do movimento).
+	Os imputs em "Nome" "Montante" e "Categoria" não poderão ser deixados em branco, terão de ter pelo menos 1 caracter. O
+	montante inserido nunca poderá ser igual ou inferior a zero.
+
+
+
+- A menos que o utilizador esteja a meio do processo de criação de um novo movimento, este terá sempre oportunidade de regressar ao
+menu anterior, até atingir o menu principal. A partir do menu principal, o utilizador pode fexar a aplicação digitando "X".
+Utilizei a função "Crash" com atributo "("GoodBye!")" para representar o fechar do programa.
+
+- Devido à especificação do exercicio e do formador, não implementei funcionalidades para a criação de utilizadores multiplos e individuais. 
+Tratei este programa como se fosse para um único User, não há instancias do modelo User. Pelas mesmas razões não implementei funções para editar 
+ou eliminar movimentos préviamente criados. 

@@ -1,0 +1,322 @@
+
+/* ========================== PROJETO FINAL (PROGRAMAÇÃO I) ======================= */
+/* ============================== GESTOR DE DESPESAS ============================== */
+
+
+
+/* ==================================== SETUP ===================================== */
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+/* IMPORTS */
+
+importar DataBase como DataBase
+importar Funcoes como Funcoes
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+/* MAIN MENU DA APP */
+
+funcao MainMenu()
+    imprime("=======================================================================")
+    imprime("|                       - GESTOR DE DISPESAS -                    [X] |")
+    imprime("=======================================================================")
+    imprime("|                              MAIN MENU                              |")
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+    imprime("|                                                                     |")
+    imprime("|                          Escolha uma opção                          |")
+    imprime("|                                                                     |")
+    imprime("|        [A] Adicionar Movimento        [B] Visualizar Movimentos     |")
+    imprime("|                                                                     |")
+    imprime("|                                                                     |")
+    imprime("|                                                                     |")
+    imprime("|                                                                     |")
+    imprime("|                                                                     |")
+    imprime("|                                                                     |")
+    
+    UserChoosing = verdadeiro
+    enquanto UserChoosing:
+        entrada("A sua opção: " opcao)
+
+        se opcao == 'X':
+            Crash("GoodBye!")
+            UserChoosing = falso
+
+        se opcao == 'A':
+            AdicionarMovimento()
+            UserChoosing = falso
+
+        se opcao == 'B':
+            MenuVisualizarMovimentos()
+            UserChoosing = falso
+        
+        senao:
+            imprime("ERRO: Escolha uma opção válida.")
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+ /* MENU VISUALIZAR MOVIMENTOS */   
+
+funcao MenuVisualizarMovimentos() /* MainMenu -> Here */
+
+    Funcoes.CalcularSaldo()
+
+    imprime("=======================================================================")
+    imprime("|                       - GESTOR DE DISPESAS -                    [X] |")
+    imprime("=======================================================================")
+    imprime("|                      Visualizador de Movimentos                     |")
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+    imprime("|                                                                     |")
+    imprime("|                             Visualizar:                             |")
+    imprime("|                                                                     |")
+    imprime("|      [A] Todos Os Movimentos        [B] Movimentos Por Categoria    |")
+    imprime("|                                                                     |")
+    imprime("|      [C] Saldo Total                [D] Saldo Por Categoria         |")
+    imprime("|                                                                     |")
+    imprime("|                                                                     |")
+    imprime("|                                                                     |")
+    imprime("|                                                                     |")
+                                                                       
+    UserChoosing = verdadeiro
+    enquanto UserChoosing:
+        entrada("Escolha uma opção: " opcao)
+
+        se opcao == 'X':
+            MainMenu()
+            UserChoosing = falso
+
+        se opcao == 'A':
+            Funcoes.ListarTodosMovimentos()
+            UserChoosing = falso
+
+        se opcao == 'B':
+            Funcoes.ListarMovimentosPorCategoria()
+            UserChoosing = falso
+        
+        se opcao == 'C':
+            Funcoes.MostrarSaldoTotal()
+
+        se opcao == 'D':
+            Funcoes.MostrarSaldoPorCategoria()
+
+        senao:
+            imprime("ERRO: Escolha uma opção válida.")
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+ /* MENU ADICIONAR MOVIMENTO */   
+
+funcao AdicionarMovimento()
+    imprime("=======================================================================")
+    imprime("|                       - GESTOR DE DISPESAS -                    [X] |")
+    imprime("=======================================================================")
+    imprime("|                        Adicionar Movimento                          |")
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+    imprime("|                          O seu movimento é:                         |")
+    imprime("|                                                                     |")
+    imprime("|                 [A] Crédito           [B] Débito                    |")
+    imprime("|                                                                     |")             
+
+    novoMovimento = Movimento() /* Criar Instancia de Objeto "Movimento", ainda sem atributos */
+
+    UserChoosing = verdadeiro
+    enquanto UserChoosing:
+        entrada("A sua escolha: " opcao)
+
+        se opcao == 'X':
+            MainMenu()
+            UserChoosing = falso
+            
+        se opcao == 'A':
+            imprime("| Movimento definido como 'Crédito (+) com sucesso.")
+            Tipo = 'Crédito'                                                                   
+            UserChoosing = falso                
+
+        se opcao == 'B':
+            imprime("| Movimento definido como 'Débito (-) com sucesso.")
+            Tipo = 'Débito'                                                                   
+            UserChoosing = falso
+        
+        senao:
+            imprime("ERRO: Escolha uma opção válida.")
+
+    novoMovimento = Movimento(Tipo) 
+
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+    imprime("|                   Digite um nome para este Movimento                |")
+    imprime("|                                                                     |")
+    
+    UserChoosing = verdadeiro
+    enquanto UserChoosing:
+        entrada("Nome: ", Nome)   
+        
+        se Nome != "":
+            novoMovimento = Movimento(Tipo, Nome) 
+
+        senao:
+            imprime("ERRO: Digite um nome de pelo menos 1 caracter.")
+
+
+
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+    imprime("|                     Digite o Montante do Movimento                  |")
+    imprime("|                                                                     |")
+
+    UserChoosing = verdadeiro
+    enquanto UserChoosing:
+        entrada("Montante: " Montante)
+
+        se Montante != "":
+            imprime("Montante " + Montante + " registado com sucesso.")
+            DataBase.Movimento.Montante = Montante                                          
+            UserChoosing = falso
+
+        se Montante == '0':
+            imprime("ERRO: O Montante inserido não pode ser zero.")
+
+        se Montante < '0':
+            imprime("ERRO: O Montante inserido não pode ser inferior a zero.")
+
+        senao:
+            imprime("ERRO: Insira um montante de pelo menos 1 dígito.")
+
+    novoMovimento = Movimento(Tipo, Nome, Montante) 
+
+    
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+    imprime("|                   Escolha a categoria do Movimento                  |")
+    imprime("|                                                                     |")
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+    imprime("|                          Escolha uma opção:                         |")
+    imprime("|                                                                     |")
+    imprime("|        [A] Categoria Existente           [B] Nova Categoria         |")
+    imprime("|                                                                     |")
+    
+
+    UserChoosing = verdadeiro
+    enquanto UserChoosing:
+        entrada("A sua escolha: " opcao)
+
+        se opcao == 'A':
+            imprime("|---------------------------------------------------------------------|")
+            imprime("|                                                                     |")
+            imprime("|                         Categorias Existentes                       |")
+            imprime("|                                                                     |")
+            imprime("|---------------------------------------------------------------------|")
+            imprime("|                                                                     |")
+
+            
+            Funcoes.ListarCategorias()   
+
+            imprime("|                                                                     |")
+            imprime("|                         Escolha uma categoria:                      |")
+            imprime("|                                                                     |")
+
+            UserChoosing2 = verdadeiro
+            enquanto UserChoosing2:
+                entrada("Categoria: " Categoria)
+
+            se opcao em DataBase.Movimento.Categoria:
+                imprime("Categoria " + Categoria + " escolhida com sucesso.")
+                novoMovimento = Movimento(Tipo, Nome, Montante, Categoria)
+                UserChoosing2 = falso
+                UserChoosing = falso 
+
+            senao:
+                imprime("ERRO: Escolha uma categoria válida.")
+
+        se opcao == 'B':
+            imprime("|---------------------------------------------------------------------|")
+            imprime("|                                                                     |")
+            imprime("|                            Nova Categoria                           |")
+            imprime("|                                                                     |")
+            imprime("|---------------------------------------------------------------------|")
+            imprime("|                                                                     |")
+            imprime("|                          Digite um nome para                        |")
+            imprime("|                         a sua nova categoria:                       |")
+            imprime("|                                                                     |")
+            
+            
+            UserChoosing2 = verdadeiro
+            enquanto UserChoosing:
+                entrada("Nome: " Categoria)
+
+                se Categoria == "":
+                    imprime("ERRO: O nome da categoria deve ter pelo menos um caracter.")
+
+                se Categoria em DataBase.Movimento.Categoria:
+                    imprime("ERRO: Já criou uma categoria com este nome.")
+
+                senao:
+                    imprime("Categoria " + Categoria + " criada com sucesso.")
+                    novoMovimento = Movimento(Tipo, Nome, Montante, Categoria)
+                    UserChoosing2 = falso
+                    UserChoosing = falso 
+
+
+        senao:
+            imprime("ERRO: Escolha uma opção válida.")
+
+
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+    imprime("|                         Adicione uma Descrição                      |")
+    imprime("|                              (OPCIONAL)                             |")
+    imprime("|                                                                     |")
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+
+    UserChoosing = verdadeiro
+    enquanto UserChoosing:
+        entrada("Descrição: ", Descricao)
+
+        se Descricao != "":
+            novoMovimento = Movimento(Tipo, Nome, Montante, Categoria, Descricao)
+            UserChoosing = falso
+
+        senao:                                                 
+            UserChoosing = falso
+
+
+    se Categoria em DataBase.User.Movimentos:                  /* Se a categoria existe, Adicionar novoMovimento à lista existente (lista que é o valor da chave[categorias]) */
+        
+        DataBase.User.Movimentos[Categoria].adicionar(novoMovimento)
+        imprime("Novo movimento '" + Nome + "' criado e adicionado na categoria '" + Categoria + "'preexistente com sucesso.")
+
+    senao:                                                                          /*# Senão, Inicializar uma nova chave-valor, onde chave é a categoria, e valor é a lista de movimentos, e adicionar novoMovimento a essa lista */
+        
+        DataBase.User.Movimentos[Categoria] = lista(novoMovimento) 
+        imprime("Novo movimento '" + Nome + "' e nova categoria '" + Categoria + "' criados com sucesso.")
+        imprime("Novo movimento '" + Nome + "' adicionado a '" + Categoria + "' com sucesso.")
+    
+    MainMenu()
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+/* FUNÇÃO PARA ABRIR O PROGRAMA*/
+
+funcao Programa()
+    MainMenu()
+
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+    
+
+
+/* ================================== EXECUTION =================================== */
+
+
+Programa()
+
+
+
+

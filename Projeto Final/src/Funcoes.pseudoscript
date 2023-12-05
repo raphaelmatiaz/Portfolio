@@ -1,0 +1,193 @@
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+/* IMPORTS */
+importar DataBase como DataBase
+
+/* -------------------------------------------------------------------------------------------------------------------------- */
+
+/* FUNÇÃO PARA LISTAR TODOS OS MOVIMENTOS DE USER (independentemente da categoria) */
+
+funcao ListarTodosMovimentos()
+
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+    imprime("|                             Movimentos                              |")
+    imprime("|                                                                     |")
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+
+    se DataBase.User.Movimentos.tamanho() > 0:                                                  /* Se haver pelo menos uma categoria com um movimento, vai imprimir isso. Se haver mais categorias com mais valores vai imprimir cada categoria e movimentos associados*/
+        para cada chave, valor em DataBase.User.Movimentos:
+            para cada elemento em valor:
+                
+                imprime("|" + valor                                                              )
+
+        senao:
+            imprime("|                                                                     |")
+            imprime("|                     Nenhum movimento registado                      |")
+            imprime("|                                                                     |")
+
+            UserChoosing = verdadeiro /*Voltar ao menu*/  
+            enquanto UserChoosing:
+                entrada("Digite 'X' para voltar ao menu 'Visualizador de Movimentos': " opcao)
+
+                se opcao == 'X':
+                    MenuVisualizarMovimentos()
+                    UserChoosing = falso
+
+                senao:
+                    imprime("ERRO: Escolha uma opção válida.")
+
+
+/* -------------------------------------------------------------------------------------------------------------------------- */
+
+/* FUNÇÃO PARA LISTAR TODOS OS MOVIMENTOS DE USER (conciderando a categoria) */
+
+funcao ListarMovimentosPorCategoria()
+
+    se DataBase.Movimento.Categoria.tamanho() > 0:    /* verificar se existe pelo menos 1 categoria*/
+        imprime("|---------------------------------------------------------------------|")
+        imprime("|                                                                     |")
+        imprime("|                       Escolha uma Categoria                         |")
+        imprime("|                                                                     |")
+                                      
+        para cada chave, valor em DataBase.Movimento.Categoria:
+            para cada elemento em valor:
+
+            imprime("| --------------------------- " + chave " --------------------------- |")
+            imprime("| " + elemento                                                         )
+    senao:
+        imprime("|                                                                     |")
+        imprime("|                     Nenhuma categoria registada                     |")
+        imprime("|                                                                     |")
+        imprime("|                                                                     |")
+
+
+        UserChoosing = verdadeiro  /*Voltar ao menu*/                                     
+        enquanto UserChoosing:
+            entrada("Digite 'X' para voltar ao menu Menu 'Visuaizador de Movimentos': " opcao)
+
+            se opcao == 'X':
+                MenuVisualizarMovimentos()
+                UserChoosing = falso
+
+            senao:
+                imprime("ERRO: Escolha uma opção válida.")
+
+
+
+/* -------------------------------------------------------------------------------------------------------------------------- */
+
+/* FUNCAO PARA LISTAR CATEGORIAS */
+
+funcao ListarCategorias()
+
+    se DataBase.Movimento.Categoria.tamanho() > 0:
+            para cada chave em DataBase.Movimento.Categoria:
+                imprime("| " + chave + "                                                    ")
+
+    senao:
+        imprime("|                                                                     |")
+        imprime("|                     Nenhuma categoria registada                     |")
+        imprime("|                                                                     |")
+
+/* -------------------------------------------------------------------------------------------------------------------------- */
+
+/* FUNÇÃO PARA CALCULAR SALDO TOTAL */
+
+funcao CalcularSaldo()
+
+    DataBase.User.Saldo = 0
+
+
+    para cada chave, valor em DataBase.User.Movimentos:    /* para cada categoria->movimentos*/
+        para cada elemento em valor:                          /* para cada "movimento" individual na lista de movimentos de cada categoria"*/
+
+
+            se elemento.Tipo == 'Crédito':                                     /* se for um crédito ----> somar ao saldo*/
+                DataBase.User.Saldo = DataBase.User.Saldo + elemento.Montante
+
+            senao:                                                              /* se for um débito ------> substrair ao saldo*/
+                DataBase.User.Saldo = DataBase.User.Saldo - elemento.Montante
+
+    retorne Saldo                                                         /* Retornar o saldo */
+
+            
+
+/* -------------------------------------------------------------------------------------------------------------------------- */
+
+/* FUNCAO > MOSTRAR < (não confundir com calcular) SALDO TOTAL */
+
+    CalcularSaldo()
+
+funcao MostrarSaldoTotal()
+    imprime("=======================================================================")
+    imprime("|                            SALDO TOTAL                              |")
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+    imprime("|          Total: "    + DataBase.User.Saldo +                       "|")
+    imprime("|                                                                     |")
+    imprime("|---------------------------------------------------------------------|")
+
+    UserChoosing = verdadeiro  /*Voltar ao menu "Visualizador de Movimentos" */                                     
+    enquanto UserChoosing:
+        entrada("Digite 'X' para voltar ao menu 'Visualizador de Movimentos': " opcao)
+
+        se opcao == 'X':
+            MenuVisualizarMovimentos()
+            UserChoosing = falso
+
+        senao:
+            imprime("ERRO: Escolha uma opção válida.")
+
+
+/* -------------------------------------------------------------------------------------------------------------------------- */
+
+/* FUNCAO MOSTRAR SALDO ESPECIFICO A CADA CATEGORIA */
+
+funcao MostrarSaldoPorCategoria()
+    imprime("=======================================================================")
+    imprime("|                        SALDO POR CATEGORIA                          |")
+    imprime("|---------------------------------------------------------------------|")
+    imprime("|                                                                     |")
+
+    /* ETAPA 1 -- Calcular o Saldo -- */
+
+    saldoPorCategoria = [()]                                    /* Inicializar uma lista de dicionarios vazios para acolher categorias->saldos */
+
+    para cada chave, valor em DataBase.User.Movimentos:         /* Para cada categoria, movimentos na DataBase... */
+        
+        Saldo = 0                                               /* Reset Saldo a zero antes de calcular, para cada categoria */
+
+        para cada elemento em valor:                            /* ...e para cada movimento individual dentro da lista de movimentos:*/
+
+            se elemento.Tipo == 'Crédito':                      /* Se for credito é + */
+                Saldo = Saldo + elemento.Montante                      
+
+            senao:
+                Saldo = Saldo - elemento.Montante               /* Se for credito é - */
+
+        Categoria_Saldo[categoria] = Saldo                      /* Criar um mapa categoria->saldo */
+        saldoPorCategoria.adicionar[Categoria_Saldo]            /* Guardar esse mapa na lista de mapas "saldoPorCategoria" */
+
+
+    /* ETAPA 2 -- Mostrar o Saldo -- */
+
+    para cada chave, valor em saldoPorCategoria:                                            /* Imprimir cada categoria->saldo */
+        imprime("|---------------------------------------------------------------------|")
+        imprime("Categoria: " + categoria + " ----> " + " Saldo: " + saldo)                 /* Concatenar */
+
+    imprime("|---------------------------------------------------------------------|")
+
+    UserChoosing = verdadeiro  /*Voltar ao menu "Visualizador de Movimentos" */                                     
+        enquanto UserChoosing:
+            entrada("Digite 'X' para voltar ao menu 'Visualizador de Movimentos': " opcao)
+
+            se opcao == 'X':
+                MenuVisualizarMovimentos()
+                UserChoosing = falso
+
+            senao:
+                imprime("ERRO: Escolha uma opção válida.")
+
+

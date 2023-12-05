@@ -1,0 +1,31 @@
+/* ============================== BASE DE DADOS ============================== */
+
+modelo Movimento:
+    construtor(Tipo, Nome, Montante, Categoria, Descricao):
+        Movimento.Tipo = Tipo
+        Movimento.Montante = Montante
+        Movimento.Categoria = []
+        Movimento.Descricao = Descricao
+
+
+modelo User:
+    construtor(Saldo, Movimentos)
+        User.Saldo = 0
+        User.Movimentos = [(
+        
+        ''->'',
+        
+        ''->'',
+        
+        ''->'',
+        
+        ''->'',
+        
+        ''->'',
+        
+        ''->'',
+        
+        ''->''
+    
+    )]
+
